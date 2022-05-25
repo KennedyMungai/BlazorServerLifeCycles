@@ -36,7 +36,6 @@
     protected async override Task OnInitializedAsync()
     {
         EventType.Add("OnInitializedAsync is called");
-        await Task.Delay(1000);
     }
     
     protected override void OnParametersSet()
@@ -47,6 +46,5 @@
     protected async override Task OnParametersSetAsync()
     {
         EventType.Add("OnParametersSetAsync is called");
-        Task.Delay(1000);
     }
 }
