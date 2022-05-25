@@ -1,5 +1,30 @@
-﻿<h3>Lifecycle</h3>
+﻿@page "/Lifecycle"
+@using BlazorServerLifeCycles.Pages.LearnBlazor.LearnBlazorComponents
+
+<h3 class="display-6 text-center">Lifecycle</h3>
+<hr>
+
+<div class="border">
+    <_Lifecycle></_Lifecycle>
+</div>
+
+@foreach(var item in EventType)
+{
+    @item
+    <hr>
+}
 
 @code {
+    List<string> EventType = new List<string>();
 
+    protected override void OnInitialized()
+    {
+        EventType.Add("OnInitialized is called");
+    }
+    
+    protected async override Task OnInitializedAsync()
+    {
+        EventType.Add("OnInitializedAsync is called");
+        await Task.Delay(1000);
+    }
 }
