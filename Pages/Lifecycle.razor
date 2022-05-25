@@ -4,8 +4,12 @@
 <h3 class="display-6 text-center">Lifecycle</h3>
 <hr>
 
-<div class="border">
-    <_Lifecycle></_Lifecycle>
+<br>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<br>
+
+<div class="border p-4 m-4">
+    <_Lifecycle CountValue="@currentCount"></_Lifecycle>
 </div>
 
 @foreach(var item in EventType)
@@ -15,6 +19,13 @@
 }
 
 @code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
     List<string> EventType = new List<string>();
 
     protected override void OnInitialized()
@@ -26,5 +37,16 @@
     {
         EventType.Add("OnInitializedAsync is called");
         await Task.Delay(1000);
+    }
+    
+    protected override void OnParametersSet()
+    {
+        EventType.Add("OnParametersSet is called");
+    }
+    
+    protected async override Task OnParametersSetAsync()
+    {
+        EventType.Add("OnParametersSetAsync is called");
+        Task.Delay(1000);
     }
 }
